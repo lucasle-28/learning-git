@@ -1445,7 +1445,7 @@ label {
 }
 
 .min-height_100dvh {
-  min-height:0;
+  min-height:100vh;
 }
 
 .text-color_on-overlay {
