@@ -137,7 +137,7 @@
     <div class="wrap">
       <aside class="sidebar">
         <div class="search">
-          <input id="filter" type="search" placeholder="Filter projects…" />
+          <input id="filter" type="search" placeholder="Search" />
         </div>
         <div id="list" class="list" role="listbox" aria-label="Projects"></div>
       </aside>
@@ -170,16 +170,16 @@
           id: "spotify-companion",
           name: "Spotify Companion",
           description:
-            "A helper web app that enhances Spotify usage (auth, playlists, insights).",
-          // If the project is inside this repo: use a relative path:
+            "A Spotify extension that allows users to add a crop point to songs. Limited functionality due to need for active backend hosting",
           url: "projects/spotify-companion/projects/public/index.html",
-          // If you must link off-site, it might be blocked by X-Frame-Options.
-          // In that case, the "Open in new tab" button still works.
-          // url: "https://your-username.github.io/spotify-companion/"
         },
-        // Add more projects here:
-        // { id:"trading-bot", name:"Trading Bot Dashboard", description:"Live PnL + charts.", url:"projects/trading-bot/index.html" },
-        // { id:"embedded-lidar", name:"LiDAR Visualizer", description:"WebGL point cloud viewer.", url:"projects/lidar/index.html" },
+        {
+          id: "spending-organizer",
+          name: "Group Spending Organizer",
+          description:
+            "A collaborative Google Sheet to track group travel expenses, currency conversions, and shared debts.",
+          url: "https://docs.google.com/spreadsheets/d/177Qx7w-W9qF3ybfN2DEQ-rq-XSRGgNVz1v26hVnSvBQ/edit?usp=sharing",
+        },
       ];
 
       // ---- UI wiring ----
