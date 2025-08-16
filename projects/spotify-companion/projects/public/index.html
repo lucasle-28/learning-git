@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Companion</title> 
+  <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+
+  <style>
+    :root {
+      --spotify-green: #187c3b;
+      --spotify-green-hover: #1e9448;
+      --spotify-black: #121212;
+      --spotify-gray: #1e1e1e;
+    }
+
+    body {
+      background-color: var(--spotify-black);
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      margin: 30px;
+    }
+
+    h1, h3 {
+      color: var(--spotify-green);
+    }
+
+    button {
+      background-color: var(--spotify-green);
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: var(--spotify-green-hover);
+    }
+
+    #cropSlider {
+      margin: 20px 0;
+    }
+
+    .noUi-target {
+      background: #2a2a2a;
+      border: none;
+    }
+
+    .noUi-connect {
+      background: var(--spotify-green);
+    }
+
+    .noUi-handle {
+      background: #ffffff;
+      border: 2px solid var(--spotify-green);
+      box-shadow: none;
+    }
+
+    .noUi-tooltip {
+      display: none;
+    }
+
+    pre {
+      background-color: var(--spotify-gray);
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <!--put webpage title in header-->
+  <button onclick="window.location.href='/login'">Login</button>
+  <button onclick="checkPlayback()">Current Song Info</button>
+  <button onclick="skipTrack()">Skip</button>
+
+  <pre id="output"></pre>
+
+  <h3>Crop</h3>
+  <div id="cropSlider"></div>
+  <p>Skip at <span id="endLabel">0:00</span></p>
+  <button onclick="saveCropFromSlider()">Save Crop</button>
+  <button onclick="deleteCrop()">Delete Crop</button>
+
+  <script>
+    let cropSlider;
+    let currentTrackId = null;
+    let duration = 100000;
+
+    function formatMs(ms) {
+      const minutes = Math.floor(ms / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    window.onload = function () {
+      cropSlider = document.getElementById('cropSlider');
+
+      noUiSlider.create(cropSlider, {
+        start: [60000],
+        connect: [true, false],
+        range: {
+          min: 0,
+          max: 100000
+        },
+        tooltips: false,
+        step: 500
+      });
+
+      cropSlider.noUiSlider.on('update', function (values) {
+        const end = Math.floor(values[0]);
+        document.getElementById('endLabel').textContent = formatMs(end);
+      });
+    };
+
+    async function checkPlayback() {
+      try {
+        const res = await fetch('/playback-check');
+        const data = await res.json();
+
+        const progress = data.progress_ms || 0;
+        duration = data.item?.duration_ms || 100000;
+        currentTrackId = data.item?.id;
+
+        cropSlider.noUiSlider.updateOptions({
+          range: { min: 0, max: duration }
+        });
+        
+        //intiial conditions
+        const name = data.item?.name || 'Unknown';
+        const trackId = data.item?.id || 'N/A';
+        const formattedProgress = formatMs(progress);
+
+        const cropRes = await fetch('/crop-data');
+        const cropData = await cropRes.json();
+        const crop = cropData.find(entry => entry.track_id === trackId);
+
+        if (crop) {
+          cropSlider.noUiSlider.set([crop.crop_end_ms]);
+        }
+
+        const cropText = crop
+          ? `Crop: 0 → ${formatMs(crop.crop_end_ms)}`
+          : 'No crop data';
+
+        document.getElementById('output').textContent =
+          `Track: ${name}\nTrack ID: ${trackId}\nPlaytime: ${formattedProgress}\n${cropText}`;
+      } catch (err) {
+        document.getElementById('output').textContent = 'Error fetching playback info.';
+      }
+    }
+
+    function saveCropFromSlider() {
+      const end = Math.floor(cropSlider.noUiSlider.get());
+      const trackId = currentTrackId;
+      if (!trackId) return alert("No track playing.");
+
+      const newCrop = {
+        track_id: trackId,
+        crop_start_ms: 0,
+        crop_end_ms: end
+      };
+
+      fetch('/crop-data')
+        .then(res => res.json())
+        .then(cropData => {
+          const filtered = cropData.filter(entry => entry.track_id !== trackId);
+          filtered.push(newCrop);
+          return fetch('/crop-data', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filtered)
+          });
+        })
+        .then(() => alert("Crop point saved!"))
+        .catch(() => alert("Failed to save crop."));
+    }
+
+    function deleteCrop() {
+      if (!currentTrackId) return alert("No track playing.");
+
+      fetch('/crop-data')
+        .then(res => res.json())
+        .then(cropData => {
+          const filtered = cropData.filter(entry => entry.track_id !== currentTrackId);
+          return fetch('/crop-data', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filtered)
+          });
+        })
+        .then(() => alert("Crop point deleted."))
+        .catch(() => alert("Failed to delete crop."));
+    }
+
+    async function skipTrack() {
+      await fetch('/skip', { method: 'POST' });
+      alert('Skipped!');
+    }
+
+    setInterval(checkPlayback, 1000);
+  </script>
+</body>
+</html>

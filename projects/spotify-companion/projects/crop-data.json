@@ -1,0 +1,7 @@
+[
+  {
+    "track_id": "EXAMPLE_TRACK_ID",
+    "crop_start_ms": 30000,
+    "crop_end_ms": 120000
+  }
+]

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Projects | Lucas' Coding Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg: #0b0d10;
+        --panel: #12151a;
+        --text: #e7eaee;
+        --muted: #9aa3ad;
+        --accent: #58a6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      header {
+        padding: 16px 20px;
+        border-bottom: 1px solid #1e232b;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      header a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+      header a:hover {
+        color: var(--text);
+      }
+      .wrap {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        min-height: calc(100vh - 60px);
+      }
+      @media (max-width: 900px) {
+        .wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+      .sidebar {
+        border-right: 1px solid #1e232b;
+        background: var(--panel);
+        padding: 14px;
+      }
+      .search {
+        margin-bottom: 10px;
+      }
+      .search input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #242b35;
+        background: #0f1217;
+        color: var(--text);
+      }
+      .list {
+        display: grid;
+        gap: 8px;
+      }
+      .item {
+        border: 1px solid #1e232b;
+        border-radius: 12px;
+        padding: 12px;
+        background: #0f1217;
+        cursor: pointer;
+      }
+      .item:hover {
+        border-color: #2a3340;
+      }
+      .item.active {
+        outline: 2px solid var(--accent);
+      }
+      .item h4 {
+        margin: 0 0 6px 0;
+        font-size: 15px;
+      }
+      .item p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .content {
+        padding: 14px;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        gap: 10px;
+      }
+      .toolbar .title {
+        font-weight: 600;
+      }
+      .toolbar a.btn {
+        background: var(--accent);
+        color: #081018;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+      .frame {
+        width: 100%;
+        height: calc(100vh - 140px);
+        border: 1px solid #1e232b;
+        border-radius: 12px;
+        background: #0f1217;
+      }
+      .empty {
+        height: calc(100vh - 140px);
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        border: 1px dashed #2a3340;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><a href="index.html">← Back</a></div>
+      <div>Projects</div>
+      <div></div>
+    </header>
+
+    <div class="wrap">
+      <aside class="sidebar">
+        <div class="search">
+          <input id="filter" type="search" placeholder="Filter projects…" />
+        </div>
+        <div id="list" class="list" role="listbox" aria-label="Projects"></div>
+      </aside>
+
+      <main class="content">
+        <div class="toolbar">
+          <div class="title" id="title">Select a project to preview</div>
+          <a
+            id="openExternal"
+            class="btn"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            style="display: none"
+            >Open in new tab</a
+          >
+        </div>
+        <div id="preview">
+          <div class="empty">No project selected</div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // 👉 Configure your projects here.
+      // Put your built projects inside /projects/<slug>/ so they share the same origin,
+      // which allows iframe preview on GitHub Pages.
+      const PROJECTS = [
+        {
+          id: "spotify-companion",
+          name: "Spotify Companion",
+          description:
+            "A helper web app that enhances Spotify usage (auth, playlists, insights).",
+          // If the project is inside this repo: use a relative path:
+          url: "projects/spotify-companion/index.html",
+          // If you must link off-site, it might be blocked by X-Frame-Options.
+          // In that case, the "Open in new tab" button still works.
+          // url: "https://your-username.github.io/spotify-companion/"
+        },
+        // Add more projects here:
+        // { id:"trading-bot", name:"Trading Bot Dashboard", description:"Live PnL + charts.", url:"projects/trading-bot/index.html" },
+        // { id:"embedded-lidar", name:"LiDAR Visualizer", description:"WebGL point cloud viewer.", url:"projects/lidar/index.html" },
+      ];
+
+      // ---- UI wiring ----
+      const listEl = document.getElementById("list");
+      const previewEl = document.getElementById("preview");
+      const titleEl = document.getElementById("title");
+      const openExternalEl = document.getElementById("openExternal");
+      const filterEl = document.getElementById("filter");
+
+      function renderList(items) {
+        listEl.innerHTML = "";
+        items.forEach((p) => {
+          const li = document.createElement("div");
+          li.className = "item";
+          li.setAttribute("role", "option");
+          li.dataset.id = p.id;
+          li.innerHTML = `<h4>${p.name}</h4><p>${p.description}</p>`;
+          li.addEventListener("click", () => selectProject(p.id));
+          listEl.appendChild(li);
+        });
+      }
+
+      function selectProject(id) {
+        const p = PROJECTS.find((x) => x.id === id);
+        if (!p) return;
+        // set active
+        [...listEl.children].forEach((el) =>
+          el.classList.toggle("active", el.dataset.id === id)
+        );
+        // update title + external link
+        titleEl.textContent = p.name;
+        openExternalEl.href = p.url;
+        openExternalEl.style.display = "inline-block";
+        // load iframe
+        previewEl.innerHTML = "";
+        const frame = document.createElement("iframe");
+        frame.className = "frame";
+        frame.setAttribute("title", p.name);
+        frame.setAttribute("loading", "lazy");
+        // security: if you embed third-party pages, consider sandbox:
+        // frame.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
+        frame.src = p.url;
+        frame.onerror = () => {
+          previewEl.innerHTML = `<div class="empty">Preview blocked by site policy. Use “Open in new tab”.</div>`;
+        };
+        previewEl.appendChild(frame);
+        // update hash so you can deep-link
+        history.replaceState(null, "", `#${encodeURIComponent(id)}`);
+      }
+
+      function initFromHash() {
+        const id = decodeURIComponent(location.hash.replace("#", ""));
+        if (id && PROJECTS.some((p) => p.id === id)) selectProject(id);
+      }
+
+      // Filter
+      filterEl.addEventListener("input", (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = PROJECTS.filter(
+          (p) =>
+            p.name.toLowerCase().includes(q) ||
+            p.description.toLowerCase().includes(q)
+        );
+        renderList(filtered);
+      });
+
+      // Init
+      renderList(PROJECTS);
+      initFromHash();
+    </script>
+  </body>
+</html>
