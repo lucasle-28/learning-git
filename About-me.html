@@ -4,14 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lucas' Coding Portfolio</title>
-    <meta name="description" content="Lucas Le | Computer Engineering Portfolio" />
+    <meta
+      name="description"
+      content="Lucas Le | Computer Engineering Portfolio"
+    />
 
     <!-- Preconnects for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Figtree&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Webflow Styles -->
     <link
@@ -22,22 +28,29 @@
     <link rel="stylesheet" href="css/webflow.css" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="https://cdn.prod.website-files.com/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn.prod.website-files.com/img/favicon.ico"
+      type="image/x-icon"
+    />
 
     <!-- Web Font Loader -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
-      WebFont.load({ google: { families: ['Figtree:regular'] } });
+      WebFont.load({ google: { families: ["Figtree:regular"] } });
     </script>
 
     <!-- Webflow JS detection -->
     <script>
       (function (o, c) {
         var n = c.documentElement,
-          t = ' w-mod-';
-        n.className += t + 'js';
-        if ('ontouchstart' in o || (o.DocumentTouch && c instanceof DocumentTouch)) {
-          n.className += t + 'touch';
+          t = " w-mod-";
+        n.className += t + "js";
+        if (
+          "ontouchstart" in o ||
+          (o.DocumentTouch && c instanceof DocumentTouch)
+        ) {
+          n.className += t + "touch";
         }
       })(window, document);
     </script>
@@ -55,16 +68,23 @@
         data-no-scroll="1"
       >
         <div class="nav_left">
-          <a href="#" class="nav_logo w-inline-block">
+          <a href="index.html" class="nav_logo w-inline-block">
             <div class="nav_logo-icon">
-              <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+              <svg
+                width="100%"
+                height="100%"
+                viewBox="0 0 33 33"
+                preserveAspectRatio="xMidYMid meet"
+              >
                 <path
                   d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z"
-                  fill="currentColor"
+                  fill="currentcolor"
                 ></path>
               </svg>
             </div>
-            <div class="paragraph_large margin-bottom_none">Lucas' Coding Portfolio</div>
+            <div class="paragraph_large margin-bottom_none">
+              Lucas' Coding Portfolio
+            </div>
           </a>
         </div>
         <div class="nav_right">
@@ -80,108 +100,77 @@
             </a>
           </div>
         </div>
-        <!--
-        <div class="nav_mobile-menu-button w-nav-button">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <g
-                class="nc-icon-wrapper"
-                stroke-linecap="square"
-                stroke-linejoin="miter"
-                stroke-width="1.5"
-                fill="none"
-                stroke="currentColor"
-                stroke-miterlimit="10"
-              >
-                <line x1="1" y1="12" x2="23" y2="12"></line>
-                <line x1="1" y1="5" x2="23" y2="5"></line>
-                <line x1="1" y1="19" x2="23" y2="19"></line>
-              </g>
-            </svg>
-          </div>
-        </div>
-      -->
       </div>
     </div>
 
     <!-- Full Page Content -->
-    <main class="main-content">
-      <header
-      class="section padding_none overflow_hidden text-color_on-overlay is-inverse"
-    >
-      <div class="w-layout-grid grid_2-col">
-        <div
-          id="w-node-cdbde5e8-8b4f-e20c-bac0-1a4bbfefe3c5-bfefe3c3"
-          class="position_relative min-height_100dvh w-node-b1bd13bf-4bd8-e948-1d05-318982bf86a7-aa1e5349"
-        >
-          <div class="ix_parallax-scale-out-hero">
-            <img
-              class="image_cover position_absolute ix_parallax-speed--10"
-              src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header.webp"
-              width="992"
-              height="554"
-              sizes="100vw"
-              data-aisg-image-id="1b100d8f-64a2-48c9-a9da-3171f4aae0ed"
-              loading="lazy"
-              srcset="
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-500.webp   500w,
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-800.webp   800w,
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-1080.webp 1080w,
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-1600.webp 1600w,
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-2000.webp 2000w,
-                https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header.webp        2400w
-              "
-            />
-            <div class="overlay_opacity-middle mask_top">
-            </div>
-          </div>
-        </div>
-        <div
-          id="w-node-cdbde5e8-8b4f-e20c-bac0-1a4bbfefe3c9-bfefe3c3"
-          class="container z-index_2 w-node-b1bd13bf-4bd8-e948-1d05-318982bf86b2-aa1e5349"
-        >
-          <div class="header is-align-center">
-            <div class="button-group is-align-center">
-              <a
-                href="projects.html"
-                class="button on-inverse is-secondary w-button"
-                >Projects</a
-              >
-              <a
-                href="files/Lucas Le Aug 15 Resume.pdf"
-                class="button is-secondary on-inverse w-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Resume
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
+    <main class="footer is-inverse">
       <section class="section padding_none is-inverse">
-        <div class="w-layout-grid grid_1-col position_sticky min-height_auto_mobile">
-          <div class="section">
-            <div class="container">
-              <div class="flex_horizontal flex_vertical_mobile-l">
-                <div class="ix_card-change-width">
-                  <div class="w-layout-grid grid_1-col height_100percent position_relative">
-                    <div class="text-color_on-overlay z-index_2">
-                      <div class="card_body">
-                        <div class="max-width_small margin-horizontal_auto">
-                          <h3>PROJECTS: my favorite way to learn</h3>
-                          <p class="paragraph_large">
-                            I'm an experiential learner. Projects, practice problems, and hands-on internships are how I learn best. Here, you’ll see how my learning is applied through a couple of my projects.
-                          </p>
-                          <div class="button-group">
-                            <a href="projects.html" class="button on-inverse is-secondary w-button">Projects</a>
-                          </div>
-                        </div>
+        <div
+          class="w-layout-grid grid_1-col position_sticky min-height_auto_mobile"
+        >
+          <img
+            class="image_cover position_absolute ix_parallax-speed--10"
+            src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header.webp"
+            width="992"
+            height="554"
+            sizes="100vw"
+            data-aisg-image-id="1b100d8f-64a2-48c9-a9da-3171f4aae0ed"
+            loading="lazy"
+            srcset="
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-500.webp   500w,
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-800.webp   800w,
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-1080.webp 1080w,
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-1600.webp 1600w,
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header-p-2000.webp 2000w,
+              https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689dfbfe71bd8db0398d57db_syracuse%20header.webp        2400w
+            "
+          />
+          <div class="overlay_opacity-about-me"></div>
+          <!--controls color-->
+
+          <div class="container">
+            <div class="flex_horizontal flex_vertical_mobile-l">
+              <div class="ix_card-change-width">
+                <div
+                  class="w-layout-grid grid_1-col height_100percent position_relative"
+                >
+                  <div class="text-color_on-overlay z-index_2">
+                    <div class="card_body">
+                      <div class="max-width_small margin-horizontal_auto">
+                        <h3>About Lucas</h3>
+                        <p class="paragraph_large">
+                          Lucas Le was born in Seattle, Washington, in 2006.
+                          Currently, he is pursuing a B.S in Computer
+                          Engineering at Syracuse University with an expected
+                          graduation date in May 2028. He was a highschooler at
+                          Lakeside School in Seattle, Washington from 2020 –
+                          2024 where he was the leader of the Robotics Team, a
+                          summer intern with Lakeside’s IT department, and on
+                          Lakeside's varsity Crew team.
+                        </p>
+                        <p class="paragraph_large">
+                          His research interests are currently still developing
+                          but he has interests for the fields of robotics, data
+                          security, embedded systems, IOT, and various other
+                          related subjects. Mr. Le has received numerous Judge’s
+                          awards in various VEX Robotics competitions in 2022
+                          and 2024. He is currently a member of Syracuse’s ASIA
+                          club and Cuse’ Baja.
+                        </p>
                       </div>
                     </div>
-                    <div class="ix_card-change-width-background is-mobile-card">
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="width_33percent flex-child_no-shrink width_100percent_mobile-l"
+              >
+                <div class="ix_card-change-side-content">
+                  <div class="grid_1-col gap-small">
+                    <div class="card_body radius_card">
+                      <!--add personal image -->
                       <img
                         class="image image_cover"
                         src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header.jpg"
@@ -190,33 +179,9 @@
                         srcset="
                           https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header-p-500.jpg 500w,
                           https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header-p-800.jpg 800w,
-                          https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header.jpg 854w"
+                          https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header.jpg       854w
+                        "
                       />
-                      <div class="overlay_opacity-middle"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="width_33percent flex-child_no-shrink width_100percent_mobile-l">
-                  <div class="ix_card-change-side-content">
-                    <div class="grid_1-col gap-small">
-                      <div class="card_body background_white radius_card">
-                        <h3 class="black-title">What I've learned over the years</h3>
-                        <p class="black-title">
-                          Leadership, Excellence, Curiosity—tenets of what I live by. From my experience being the Vice-Director of a RSO to my volunteer work, I aspire to learn to the fullest. Check out the languages, concepts, and people skills I've learned & developed.
-                        </p>
-                        <div class="button-group">
-                          <a href="Skills.html" class="button on-inverse w-button">Skills</a>
-                        </div>
-                      </div>
-                      <div class="card_body background_white radius_card">
-                        <h3 class="black-title">BEYOND ACADEMIA</h3>
-                        <p class="black-title">
-                          I have a life outside of school and research: rock-climbing, snowboarding, traveling… Learn more about me, my hobbies, and my aspirations.
-                        </p>
-                        <div class="button-group">
-                          <a href="About-me.html" class="button on-inverse w-button">About me</a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -229,15 +194,46 @@
       <footer class="footer is-inverse">
         <div class="container">
           <div class="footer_bottom">
-            <h5 class="black-title">Lucas Le | Computer Engineering @ Syracuse University</h5>
-            <ul class="flex_horizontal is-y-center is-x-center gap-xsmall is-wrap margin-bottom_none padding_none w-list-unstyled" role="list">
-              <li><a href="https://github.com/lucasle-28" class="footer_link on-inverse w-inline-block" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a></li>
-              <li><a href="files/Lucas Le Aug 15 Resume.pdf" class="footer_link on-inverse w-inline-block" target="_blank" rel="noopener noreferrer"><strong>Resume</strong></a></li>
-              <li><a href="https://www.linkedin.com/in/le-lucas/" class="footer_link on-inverse w-inline-block" target="_blank" rel="noopener noreferrer"><strong>LinkedIn</strong></a></li>
+            <h5 class="black-title">
+              Lucas Le | Computer Engineering @ Syracuse University
+            </h5>
+            <ul
+              class="flex_horizontal is-y-center is-x-center gap-xsmall is-wrap margin-bottom_none padding_none w-list-unstyled"
+              role="list"
+            >
+              <li>
+                <a
+                  href="https://github.com/lucasle-28"
+                  class="footer_link on-inverse w-inline-block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><strong>GitHub</strong></a
+                >
+              </li>
+              <li>
+                <a
+                  href="files/Lucas Le Aug 15 Resume.pdf"
+                  class="footer_link on-inverse w-inline-block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><strong>Resume</strong></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/le-lucas/"
+                  class="footer_link on-inverse w-inline-block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><strong>LinkedIn</strong></a
+                >
+              </li>
             </ul>
           </div>
           <div class="footer_bottom">
-            <div class="text-color_secondary">© 2025 Lucas' Coding Portfolio | built with the help of AI</div>
+            <div class="text-color_secondary">
+              © 2025 Lucas' Coding Portfolio | built with the help of AI
+            </div>
           </div>
         </div>
       </footer>
