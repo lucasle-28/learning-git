@@ -71,16 +71,24 @@
           <div>lle107@syr.edu | lucasle5141@gmail.com </div>
           <div class="button-group margin-top_none">
             <a
-              id="001"
-              href="https://www.linkedin.com/in/le-lucas/"
+              id="openPopup"
               class="button w-inline-block"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              <div class="button_label">Connect</div>
+              <div class="button_label">Contact</div>
             </a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <h3>Contacts</h3>
+        <p>Email:</p>
+        <p>&emsp;&ensp;lucasle5141@gmail.com</p>
+        <p>&emsp;&ensp;lle107@syr.edu</p>
+        <p><li href="https://www.linkedin.com/in/le-lucas/">LinkedIn: https://www.linkedin.com/in/le-lucas/</li></p>
+        <button id="closePopup">Close</button>
       </div>
     </div>
 
@@ -231,5 +239,35 @@
     ></script>
     <script src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/js/webflow.schunk.36b8fb49256177c8.js"></script>
     <script src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/js/webflow.schunk.d97efad01808426c.js"></script>
+    
+    <script>
+      const openBtn = document.getElementById("openPopup");
+      const closeBtn = document.getElementById("closePopup");
+      const overlay = document.getElementById("popupOverlay");
+    
+      function openModal() {
+        overlay.style.display = "flex";
+      }
+    
+      function closeModal() {
+        overlay.style.display = "none";
+        document.body.style.overflow = "";        // restore scroll
+      }
+    
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+    
+      // Close when clicking outside the popup
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+      });
+    
+      // Close on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay.style.display === "flex") closeModal();
+      });
+    </script>
+    
+  
   </body>
-</html>
+</html>gi
