@@ -22,7 +22,7 @@
     <!-- Webflow Styles -->
     <link
       rel="stylesheet"
-      href="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/css/lucas-coding-portfolio.webflow.shared.62cc63169.css"
+      href="images/689defba9f49434baa1e5343/css/lucas-coding-portfolio.webflow.shared.62cc63169.css"
       type="text/css"
     />
     <link rel="stylesheet" href="css/webflow.css" />
@@ -30,7 +30,7 @@
     <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="https://cdn.prod.website-files.com/img/favicon.ico"
+      href="images/img/favicon.ico"
       type="image/x-icon"
     />
 
@@ -55,6 +55,7 @@
       })(window, document);
     </script>
   </head>
+  
   <body>
     <div class="nav">
       <div
@@ -70,38 +71,55 @@
         <div class="nav_left">
           <a href="index.html" class="nav_logo w-inline-block">
             <div class="nav_logo-icon">
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 33 33"
-                preserveAspectRatio="xMidYMid meet"
-              >
+              <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
                 <path
                   d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z"
-                  fill="currentcolor"
+                  fill="currentColor"
                 ></path>
               </svg>
             </div>
-            <div class="paragraph_large margin-bottom_none">
-              Lucas' Coding Portfolio
-            </div>
+            <div class="paragraph_large margin-bottom_none">Lucas' Coding Portfolio</div>
           </a>
         </div>
         <div class="nav_right">
-          <div>lle107@syr.edu | lucasle5141@gmail.com </div>
-
           <div class="button-group margin-top_none">
             <a
-              id="001"
-              href="https://www.linkedin.com/in/le-lucas/"
+              id="openPopup"
               class="button w-inline-block"
-              target="_blank"
-              rel="noopener noreferrer"
             >
-              <div class="button_label">Connect</div>
+              <div class="button_label">Contact</div>
             </a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!--Contacts popup menu-->
+    <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <h3>Contacts</h3>
+        <p>Email:</p>
+        <a
+          href="mailto:lucasle5141@gmail.com"
+          class="menu_link"
+          target="_blank"
+          rel="noopener noreferrer">&emsp;&ensp;lucasle5141@gmail.com (preferred)</a>
+        <p> <a
+          href="mailto:lle107@syr.edu"
+          class="menu_link"
+          target="_blank"
+          rel="noopener noreferrer">&emsp;&ensp;lle107@syr.edu</a>
+        <p> <a
+              href="https://www.linkedin.com/in/le-lucas/"
+              class="menu_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn: https://www.linkedin.com/in/le-lucas/
+            </a>
+          <p>Phone #: 206-581-6984</p>
+            <p>Locations: Seattle, WA • Syracuse, NY</p>
+          <p></p>
+        <button id="closePopup">Close</button>
       </div>
     </div>
 
@@ -172,13 +190,13 @@
                       <!--add personal image -->
                       <img
                         class="image image_cover"
-                        src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header.jpg"
+                        src="images/space-needle.jpg"
                         loading="lazy"
                         sizes="(max-width: 767px) 100vw, 624px"
                         srcset="
-                          https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header-p-500.jpg 500w,
-                          https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header-p-800.jpg 800w,
-                          https://cdn.prod.website-files.com/689defba9f49434baa1e5343/689e01c85389ca0f652bed91_seattle%20header.jpg       854w
+                          images/space-needle-p-500.jpg 500w,
+                          images/space-needle-p-800.jpg 800w,
+                          images/space-needle.jpg       854w
                         "
                       />
                     </div>
@@ -244,7 +262,34 @@
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/js/webflow.schunk.36b8fb49256177c8.js"></script>
-    <script src="https://cdn.prod.website-files.com/689defba9f49434baa1e5343/js/webflow.schunk.d97efad01808426c.js"></script>
+    <script src="images/689defba9f49434baa1e5343/js/webflow.schunk.36b8fb49256177c8.js"></script>
+    <script src="images/689defba9f49434baa1e5343/js/webflow.schunk.d97efad01808426c.js"></script>
+    <script>
+      const openBtn = document.getElementById("openPopup");
+      const closeBtn = document.getElementById("closePopup");
+      const overlay = document.getElementById("popupOverlay");
+    
+      function openModal() {
+        overlay.style.display = "flex";
+      }
+    
+      function closeModal() {
+        overlay.style.display = "none";
+        document.body.style.overflow = "";        // restore scroll
+      }
+    
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+    
+      // Close when clicking outside the popup
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+      });
+    
+      // Close on Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay.style.display === "flex") closeModal();
+      });
+    </script>
   </body>
 </html>
