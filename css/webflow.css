@@ -1188,20 +1188,6 @@ label {
   inset: 0%;
 }
 
-.overlay_opacity-about-me { /*fix ts*/
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 90%;
-  height: 105%;
-  /*
-  var(
-    --ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755180989685---background-color--bg-overlay
-  );
-  */
-  position: absolute;
-  inset: 10%;
-  
-}
-
 .overlay_opacity-middle.is-inverse {
   background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1755180989685---core-neutral-color--neutral-primary);
   opacity: .75;
@@ -1426,6 +1412,10 @@ label {
   background-color: #fff;
 }
 
+.color-about-me {
+  background-color: #0000007a;
+}
+
 .header.is-align-center {
   text-align: center;
   align-items: center;
@@ -1451,6 +1441,10 @@ label {
 .padding_none {
   padding: 0;
   list-style-type: none;
+}
+
+textSmall {
+  font-size:small;
 }
 
 body {
